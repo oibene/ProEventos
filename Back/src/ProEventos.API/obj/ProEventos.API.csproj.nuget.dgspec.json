@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\ProEventos.API\\ProEventos.API.csproj": {}
+    "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\Back\\src\\ProEventos.API\\ProEventos.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\ProEventos.API\\ProEventos.API.csproj": {
+    "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\Back\\src\\ProEventos.API\\ProEventos.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\ProEventos.API\\ProEventos.API.csproj",
+        "projectUniqueName": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\Back\\src\\ProEventos.API\\ProEventos.API.csproj",
         "projectName": "ProEventos.API",
-        "projectPath": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\ProEventos.API\\ProEventos.API.csproj",
+        "projectPath": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\Back\\src\\ProEventos.API\\ProEventos.API.csproj",
         "packagesPath": "C:\\Users\\bene.alves\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\ProEventos.API\\obj\\",
+        "outputPath": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\Back\\src\\ProEventos.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bene.alves\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -35,12 +35,12 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[5.6.3, )"
             }
           },
           "imports": [
@@ -49,8 +49,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -62,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\6.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }
