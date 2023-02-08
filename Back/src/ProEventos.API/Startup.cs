@@ -6,6 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ProEventos.Persistence.Contextos;
+using ProEventos.Application.Contratos;
+using ProEventos.Application;
+using ProEventos.Persistence.Contratos;
+using ProEventos.Persistence;
 
 namespace ProEventos.API
 {
@@ -25,7 +29,14 @@ namespace ProEventos.API
                 //add banco de dados (useSqlite) e puxa os dados tambem
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
-            services.AddControllers();
+            services.AddControllers() //para de entrar em loop infinito
+            .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling
+                                     = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            //pra nao dar erro de servidor
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IGeralPersist, GeralPersist>();
+            services.AddScoped<IEventoPersist, EventoPersist>();
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

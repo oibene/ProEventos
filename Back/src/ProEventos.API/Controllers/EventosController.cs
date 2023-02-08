@@ -96,7 +96,7 @@ namespace ProEventos.API.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, Evento model)
         {
             try
@@ -116,7 +116,7 @@ namespace ProEventos.API.Controllers
         }
 
 
-        [HttpPost]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
