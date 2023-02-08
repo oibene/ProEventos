@@ -1,8 +1,7 @@
-using System.Reflection.PortableExecutable;
 using ProEventos.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace ProEventos.Persistence
+namespace ProEventos.Persistence.Contextos
 {
     public class ProEventosContext : DbContext
     {
