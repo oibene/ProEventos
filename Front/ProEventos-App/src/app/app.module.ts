@@ -10,13 +10,20 @@ import { EventosComponent } from './eventos/eventos.component';
 import { PalestrantesComponent } from './palestrantes/palestrantes.component';
 import { NavComponent } from './nav/nav.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { EventoService } from './services/evento.service';
+import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventosComponent,
     PalestrantesComponent,
-    NavComponent
+    NavComponent,
+    DateTimeFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -24,9 +31,12 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     HttpClientModule, //add o backend
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
-    FormsModule //precisa importar pra usar a caixa de bananas
+    FormsModule,
+    TooltipModule.forRoot(), //precisa importar pra usar a caixa de bananas
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [EventoService], //melhor colocar aqui porque fica facil de ver os componentes
   bootstrap: [AppComponent]
 })
 export class AppModule { }

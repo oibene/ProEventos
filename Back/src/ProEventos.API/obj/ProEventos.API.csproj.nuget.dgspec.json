@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\ProEventos.API\\ProEventos.API.csproj": {}
+    "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\proeventos.api\\ProEventos.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\ProEventos.API\\ProEventos.API.csproj": {
+    "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\proeventos.api\\ProEventos.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\ProEventos.API\\ProEventos.API.csproj",
+        "projectUniqueName": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\proeventos.api\\ProEventos.API.csproj",
         "projectName": "ProEventos.API",
-        "projectPath": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\ProEventos.API\\ProEventos.API.csproj",
+        "projectPath": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\proeventos.api\\ProEventos.API.csproj",
         "packagesPath": "C:\\Users\\bene.alves\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\ProEventos.API\\obj\\",
+        "outputPath": "C:\\Users\\bene.alves\\Desktop\\AulasAngular\\ProEventos\\back\\src\\proeventos.api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bene.alves\\AppData\\Roaming\\NuGet\\NuGet.Config"
