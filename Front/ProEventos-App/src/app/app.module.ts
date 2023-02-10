@@ -19,9 +19,12 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+<<<<<<< HEAD
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
+=======
+>>>>>>> f4767879338f911166eba32a5f72fa5945e3fbc6
 import { EventoService } from './services/evento.service';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
@@ -31,11 +34,15 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     EventosComponent,
     PalestrantesComponent,
     NavComponent,
+<<<<<<< HEAD
     DateTimeFormatPipe,
     ContatosComponent,
     DashboardComponent,
     PerfilComponent,
     TituloComponent
+=======
+    DateTimeFormatPipe
+>>>>>>> f4767879338f911166eba32a5f72fa5945e3fbc6
   ],
   imports: [
     BrowserModule,
@@ -47,6 +54,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     FormsModule,
     TooltipModule.forRoot(), //precisa importar pra usar a caixa de bananas
     BsDropdownModule.forRoot(),
+<<<<<<< HEAD
     ModalModule.forRoot(),
 
     ToastrModule.forRoot({
@@ -61,5 +69,11 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
   providers: [EventoService], //melhor colocar aqui porque fica facil de ver os componentes
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
+=======
+    ModalModule.forRoot()
+  ],
+  providers: [EventoService], //melhor colocar aqui porque fica facil de ver os componentes
+  bootstrap: [AppComponent]
+>>>>>>> f4767879338f911166eba32a5f72fa5945e3fbc6
 })
 export class AppModule { }
