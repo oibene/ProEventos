@@ -1,30 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm"
+*ngIf="showMenu()">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">ProEventos</a>
+    <a class="navbar-brand" href="#">
+      <i class="fa fa-users mb-2"></i>
+    </a>
     <button class="navbar-toggler" type="button"  data-bs-toggle="collapse"  data-bs-target="#navbarNav"
      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav" [collapse]="isCollapsed" [isAnimated]="true">
       <div class="navbar-nav mr-auto">
-        <a class="nav-link" aria-current="page" [routerLink]="['/eventos']" routerLinkActive="active" >Eventos</a>
+        <a class="nav-link" aria-current="page" [routerLink]="['/eventos/lista']" routerLinkActive="active" >Eventos</a>
         <a class="nav-link" [routerLink]="['/palestrantes']" routerLinkActive="active">Palestrantes</a>
         <a class="nav-link" [routerLink]="['/contatos']" routerLinkActive="active">Contatos</a>
       </div>
 
       <div class="navbar-nav">
-        <div class="nav-item dropdown" dropdown>
+        <div class="nav-item dropdown" dropdown style="cursor: pointer;">
           <a dropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Usuario
           </a>
 
           <div *dropdownMenu class="dropdown-menu" style="cursor: pointer;" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" [routerLink]="['/perfil']">
+            <a class="dropdown-item" [routerLink]="['/user/perfil']">
               Perfil
             </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item">
+            <a class="dropdown-item" [routerLink]="['/user/login']">
               Sair
             </a>
           </div>

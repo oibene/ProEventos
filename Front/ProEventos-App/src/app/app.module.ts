@@ -11,7 +11,7 @@ import { PalestrantesComponent } from './components/palestrantes/palestrantes.co
 import { NavComponent } from './shared/nav/nav.component';
 import { ContatosComponent } from './components/contatos/contatos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -19,14 +19,16 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
-<<<<<<< HEAD
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
-=======
->>>>>>> f4767879338f911166eba32a5f72fa5945e3fbc6
 import { EventoService } from './services/evento.service';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { EventoDetalheComponent } from './components/eventos/evento-detalhe/evento-detalhe.component';
+import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -34,15 +36,16 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     EventosComponent,
     PalestrantesComponent,
     NavComponent,
-<<<<<<< HEAD
     DateTimeFormatPipe,
     ContatosComponent,
     DashboardComponent,
     PerfilComponent,
-    TituloComponent
-=======
-    DateTimeFormatPipe
->>>>>>> f4767879338f911166eba32a5f72fa5945e3fbc6
+    TituloComponent,
+    EventoDetalheComponent,
+    EventoListaComponent,
+    UserComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,6 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     FormsModule,
     TooltipModule.forRoot(), //precisa importar pra usar a caixa de bananas
     BsDropdownModule.forRoot(),
-<<<<<<< HEAD
     ModalModule.forRoot(),
 
     ToastrModule.forRoot({
@@ -69,11 +71,5 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
   providers: [EventoService], //melhor colocar aqui porque fica facil de ver os componentes
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
-=======
-    ModalModule.forRoot()
-  ],
-  providers: [EventoService], //melhor colocar aqui porque fica facil de ver os componentes
-  bootstrap: [AppComponent]
->>>>>>> f4767879338f911166eba32a5f72fa5945e3fbc6
 })
 export class AppModule { }
