@@ -1,10 +1,22 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace ProEventos.Domain
 {
     public class Evento
     {
+
+/* CASO O BANCO DE DADOS TENHA OUTRO NOME
+
+using System.ComponentModel.DataAnnotations.Schema;
+
+[Table("TabelaDoBanco")]
+
+[Key]
+[ForeignKey("TabelaEstrangeira")]
+[*/
+
         public int Id { get; set; }
         public string Local { get; set; }
         public DateTime? DataEvento { get; set; } //nulo (?)
