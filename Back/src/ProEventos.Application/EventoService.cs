@@ -98,7 +98,6 @@ namespace ProEventos.Application
 
                 return resultado;
 
-
             }
             catch (Exception ex)
             {

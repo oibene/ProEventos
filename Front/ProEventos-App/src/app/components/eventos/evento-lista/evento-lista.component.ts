@@ -16,6 +16,7 @@ import { EventoService } from '@app/services/evento.service';
 export class EventoListaComponent implements OnInit{
   //modal
   public modalRef: BsModalRef | undefined;
+  public eventoId = 0;
 
   public eventos: Evento[] = []; //declare e atribua valor!!!
 
@@ -69,30 +70,54 @@ export class EventoListaComponent implements OnInit{
   }
 
   public getEventos(): void{
-    this.eventoService.getEventos().subscribe({
-      //observer
-      next: (e : Evento[]) => {
+    this.eventoService.getEventos().subscribe(
+      
+      //next
+      (e : Evento[]) => { 
           this.eventos = e,
           this.eventosFiltrados = this.eventos //preenche o filtro
         },
-      error: (error: any) => {
+      
+      //error
+      (error: any) => {
         this.spinner.hide();
         this.toastr.error('Erro ao Carregar os Eventos', 'Erro!'),
-        console.log(error)
+        console.error(error)
       },
-      complete: () => this.spinner.hide()
-    });
+
+      //complete
+      () => this.spinner.hide()
+    );
     //pega os dados da url e retorna itens
   }
 
 
-  openModal(template: TemplateRef<any>): void {
+  openModal(event: any, template: TemplateRef<any>, eventoId: number): void {
+    event.stopPropagation();
+    this.eventoId = eventoId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   confirm(): void {
     this.modalRef?.hide();
-    this.toastr.success('O evento foi deletado com sucesso', 'Deletado')
+    this.spinner.show();
+
+    this.eventoService.deleteEvento(this.eventoId).subscribe(
+      (result: any) => {
+        if(result.message === 'Deletado'){
+          this.toastr.success('O evento foi deletado com sucesso', 'Deletado');
+          this.spinner.hide();
+          this.getEventos();
+        }
+      },
+
+      (error: any) => {
+        console.error(error);
+        this.toastr.error(`Erro ao tentar deletar o evento ${this.eventoId}`)
+        
+      }
+    ).add(() => this.spinner.hide());
+
   }
 
   decline(): void {
