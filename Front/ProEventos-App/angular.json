@@ -103,6 +103,11 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "cache": {
+      "environment": "all",
+      "path": ".cache/ng",
+      "enabled": false
+    }
   }
 }

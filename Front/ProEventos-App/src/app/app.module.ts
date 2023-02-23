@@ -20,10 +20,12 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 
+import { NgxCurrencyModule } from 'ngx-currency';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
+
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
@@ -32,10 +34,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { EventoService } from './services/evento.service';
+import { LoteService } from './services/lote.service';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
-
-defineLocale('pt-Br', ptBrLocale);
+defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ defineLocale('pt-Br', ptBrLocale);
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(), //add data e calendarinho fofo
+    NgxCurrencyModule,
 
     ToastrModule.forRoot({
       timeOut: 3000,
@@ -77,8 +80,13 @@ defineLocale('pt-Br', ptBrLocale);
 
     NgxSpinnerModule
   ],
-  providers: [EventoService], //melhor colocar aqui porque fica facil de ver os componentes
+  providers: [
+    //melhor colocar aqui porque fica facil de ver os componentes
+    EventoService,
+    LoteService,
+  ], 
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+ }
