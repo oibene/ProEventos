@@ -35,7 +35,7 @@ import { EventoService } from './services/evento.service';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
 
-defineLocale('pt-br', ptBrLocale);
+defineLocale('pt-Br', ptBrLocale);
 
 @NgModule({
   declarations: [
