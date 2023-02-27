@@ -1,3 +1,4 @@
+using System.IO;
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,8 @@ using ProEventos.Application.Contratos;
 using ProEventos.Application;
 using ProEventos.Persistence.Contratos;
 using ProEventos.Persistence;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
 
 namespace ProEventos.API
 {
@@ -74,6 +77,12 @@ namespace ProEventos.API
             app.UseCors(cors => cors.AllowAnyHeader()
                                     .AllowAnyMethod()
                                     .AllowAnyOrigin());
+
+            //permite a aplicação add arquivos de imagem ou outros arquivos
+            app.UseStaticFiles(new StaticFileOptions(){
+               FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "resources")),
+               RequestPath = new PathString("/resources")
+            });
         
             app.UseEndpoints(endpoints =>
             {
