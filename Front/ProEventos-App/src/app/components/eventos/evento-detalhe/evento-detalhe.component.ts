@@ -1,14 +1,17 @@
 import { Component, TemplateRef } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Evento } from '@app/models/Evento';
 import { Lote } from '@app/models/Lote';
 import { EventoService } from '@app/services/evento.service';
 import { LoteService } from '@app/services/lote.service';
+
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -22,6 +25,9 @@ export class EventoDetalheComponent {
 
   evento = { } as Evento; //obj vazio ja inicializada
   eventoId?: number;
+  imagemURL = 'assets/upload.png';
+  file : File | undefined;
+
   modoSalvar = 'post'; //instancia em modo post (novo)
 
   form!: FormGroup;
@@ -73,6 +79,11 @@ export class EventoDetalheComponent {
           this.evento = {... evento};
           this.form.patchValue(this.evento);
 
+          if(this.evento.imagemURL != null){
+            this.imagemURL = environment.apiURL +
+            'resources/images/' + this.evento.imagemURL;
+          }
+
           this.evento.lotes.forEach(lote => {
             this.lotes.push(this.criarLote(lote));
           });//pega lotes
@@ -102,7 +113,7 @@ export class EventoDetalheComponent {
       qtdPessoas: ['', [Validators.required, Validators.max(120000)]],
       telefone: ['', Validators.required ],
       email: ['',[Validators.required, Validators.email]],
-      imagemURL: ['', Validators.required],
+      imagemURL: [''],
       //['aqui vai o placeholder', Validators.limitadores]
       lotes: this.fb.array([]) //recebe um array vazio para validar todos os items
     });
@@ -213,5 +224,32 @@ export class EventoDetalheComponent {
     this.modalRef?.hide();
   }
 
+
+  onFileChange(ev: any): void{
+    const reader = new FileReader();
+    
+    //sobrescreve o metodo e carrega nossa imagem
+    reader.onload = (event: any) => this.imagemURL = event.target.result;
+
+    //carrega a imagem
+    this.file = ev.target.files;
+    reader.readAsDataURL(this.file![0]);
+
+    this.uploadImg()
+  }
+  
+  uploadImg(): void{
+    this.spinner.show();
+    this.eventoService.postUpload(this.eventoId!, this.file!).subscribe(
+      () => {
+        this.carregarEvento();
+        this.toaster.success('Imagem atualizada com Sucesso', 'Sucesso!')
+      },
+      (error: any) => {
+        this.toaster.error('Erro ao fazer upload de imagem', 'Erro!');
+        console.log(error);
+      },
+    ).add(() => this.spinner.hide());
+  }
 
 }
