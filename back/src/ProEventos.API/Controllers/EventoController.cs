@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using ProEventos.API.Data;
 using ProEventos.API.Models;
-
 
 namespace ProEventos.API.Controllers;
 
@@ -9,36 +9,19 @@ namespace ProEventos.API.Controllers;
 
 public class EventoController : ControllerBase
 {
-    public EventoController(){}
-
-    public IEnumerable<Evento> _evento = new Evento[] {
-        new Evento(){
-            EventoId = 1,
-            Tema = "teste",
-            Local = "BH",
-            Lote =  "1º lote",
-            QtdPessoas = 250,
-            DataEvento = DateTime.Now.AddDays(2).ToString()
-        },
-
-        new Evento(){
-            EventoId = 2,
-            Tema = "teste",
-            Local = "SP",
-            Lote =  "2º lote",
-            QtdPessoas = 50,
-            DataEvento = DateTime.Now.AddDays(2).ToString()
-        }
-    };
+    private readonly DataContext _context; //ta buscando do banco
+    public EventoController(DataContext context){
+        _context = context;
+    }
 
     [HttpGet]
     public IEnumerable<Evento> GetAllEventos(){
-        return _evento;
+        return _context.Eventos;
     }
 
     [HttpGet("{id}")]
-    public IEnumerable<Evento> GetEventosbyId(int id){
-        return _evento.Where(p => p.EventoId == id);
+    public Evento GetEventosbyId(int id){
+        return _context.Eventos.FirstOrDefault(p => p.EventoId == id);
     }
 
     [HttpPost]
