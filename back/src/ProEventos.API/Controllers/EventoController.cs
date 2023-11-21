@@ -7,10 +7,10 @@ namespace ProEventos.API.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 
-public class EventosController : ControllerBase
+public class EventoController : ControllerBase
 {
     private readonly DataContext _context; //ta buscando do banco
-    public EventosController(DataContext context){
+    public EventoController(DataContext context){
         _context = context;
     }
 
