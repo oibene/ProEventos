@@ -1,0 +1,4 @@
+1. npm install -i @angular/cli@13
+2. npm install --save @fortawesome/fontawesome-free
+3. npm i ngx-bootstrap@4
+4. npm install bootstrap@4.5.0
