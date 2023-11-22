@@ -343,6 +343,7 @@ ASALocalRun/
 # MSBuild Binary and Structured Log
 *.binlog
 
+
 # NVidia Nsight GPU debugger configuration file
 *.nvuser
 
@@ -453,7 +454,49 @@ $RECYCLE.BIN/
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Miscellaneous
+front/ProEventos-App/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
 ## deletando DB
 *.db
 *.db-shm
 *.db-wal
+
+## deletando binlog essas porra
+back/src/ProEventos.API/bin
+back/src/ProEventos.API/obj
+back/src/ProEventos.Application/bin
+back/src/ProEventos.Application/obj
+back/src/ProEventos.Domain/bin
+back/src/ProEventos.Domain/obj
+back/src/ProEventos.Persistence/bin
+back/src/ProEventos.Persistence/obj
