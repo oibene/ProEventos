@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { EventoService } from '../services/evento.service';
-import { Evento } from '../models/Evento';
+import { EventoService } from '../../services/evento.service';
+import { Evento } from '../../models/Evento';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -23,6 +23,7 @@ export class EventosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEventos();
+    this.spinner.show();
   }
 
   constructor(private eventoService : EventoService,
@@ -40,9 +41,6 @@ export class EventosComponent implements OnInit {
   
   showImage(): void{
     this.showImg = !this.showImg;
-    this.spinner.show();
-
-    setTimeout(() => {this.spinner.hide();}, 5000);
   }
   searchEventos(searchBy: string): Evento[]{
     searchBy = searchBy.toLocaleLowerCase();
@@ -52,11 +50,11 @@ export class EventosComponent implements OnInit {
   getEventos(): void {
     const observer = {
       next: (eventos : Evento[]) => {this.eventos = eventos, this.filterEventos = this.eventos, console.log(this.filterEventos)},
-      error: () => {(error: any) => console.log(error)}
+      error: () => {this.spinner.hide(), this.toastr.error('Erro ao carregar Eventos', 'Error!')},
+      complete: () => this.spinner.hide()
     };
     this.eventoService.getEventos().subscribe(observer);
   }
-
 
   // MODAL
   openModal(template: TemplateRef<any>): void {

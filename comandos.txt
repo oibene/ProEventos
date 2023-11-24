@@ -4,4 +4,9 @@
 4. npm install bootstrap@4.5.0
 5. npm install ngx-toastr@14.3.0 --save
 6. npm install @angular/animations --save
-7. npm install ngx-spinner@14 --save 
+7. npm install ngx-spinner@v13.1.1 --save 
+
+
+
+// erro na API
+apaga a linha do entity e cola denovo
