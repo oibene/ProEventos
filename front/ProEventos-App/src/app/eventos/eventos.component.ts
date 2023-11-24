@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { EventoService } from '../services/evento.service';
+import { Evento } from '../models/Evento';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-eventos',
@@ -8,48 +12,57 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class EventosComponent implements OnInit {
+  modalRef!: BsModalRef;
+  eventos: Evento[] = [];
+  filterEventos: Evento[] = [];
+  private searchList: string = ''
+
+  widthImg = 250;
+  marginImg = 2;
+  public showImg = false;
+
   ngOnInit(): void {
     this.getEventos();
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private eventoService : EventoService,
+    private modalService: BsModalService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService) {}
 
-  public eventos: any = [];
-  public filterEventos: any = [];
-  private _searchList: string = ''
-
-  widthImg = 250;
-  marginImg = 2;
-  showImg = false;
-
-  showImage(){
+  get search() : string{
+    return this.searchList;
+  }
+  set search(value: string){
+    this.searchList = value;
+    this.filterEventos = this.searchList ? this.searchEventos(this.searchList) : this.eventos;
+  }
+  
+  showImage(): void{
     this.showImg = !this.showImg;
-  }
+    this.spinner.show();
 
-  public get search() : string{
-    return this._searchList;
+    setTimeout(() => {this.spinner.hide();}, 5000);
   }
-  public set search(value: string){
-    this._searchList = value;
-    this.filterEventos = this._searchList ? this.searchEventos(this._searchList) : this.eventos;
-  }
-
-  searchEventos(searchBy: string): any{
+  searchEventos(searchBy: string): Evento[]{
     searchBy = searchBy.toLocaleLowerCase();
-    return this.eventos.filter(
-      (e: {tema: string; local:string}) =>
-       e.tema.toLocaleLowerCase().indexOf(searchBy) !== -1 ||
-       e.local.toLocaleLowerCase().indexOf(searchBy) !== -1)
+    return this.eventos.filter( e => e.tema?.toLocaleLowerCase().indexOf(searchBy) !== -1 || e.local.toLocaleLowerCase().indexOf(searchBy) !== -1)
   }
 
-  public getEventos(): void {
-    this.http.get('https://localhost:5001/api/eventos').subscribe(
-      response => {
-        this.eventos = response,
-        this.filterEventos = this.eventos
-      },
-      error => console.log(error)
-    )
+  getEventos(): void {
+    const observer = {
+      next: (eventos : Evento[]) => {this.eventos = eventos, this.filterEventos = this.eventos, console.log(this.filterEventos)},
+      error: () => {(error: any) => console.log(error)}
+    };
+    this.eventoService.getEventos().subscribe(observer);
   }
 
+
+  // MODAL
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+ 
+  confirm(): void { this.modalRef.hide(); this.toastr.success('Evento deletado com sucesso', 'Deletado!'); }
+  decline(): void { this.modalRef.hide(); }
 }

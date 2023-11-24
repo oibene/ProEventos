@@ -2,3 +2,6 @@
 2. npm install --save @fortawesome/fontawesome-free
 3. npm i ngx-bootstrap@4
 4. npm install bootstrap@4.5.0
+5. npm install ngx-toastr@14.3.0 --save
+6. npm install @angular/animations --save
+7. npm install ngx-spinner@14 --save 

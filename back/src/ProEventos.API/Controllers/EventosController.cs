@@ -31,7 +31,7 @@ public class EventosController : ControllerBase
         }
     }
 
-    [HttpGet("id/{id}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id){
         try {
             var eventos = await _eventoService.GetEventoByIdAsync(id, true);
