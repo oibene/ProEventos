@@ -49,7 +49,7 @@
             <td class="d-none d-md-table-cell">{{evento.local}}</td>
             <td>{{evento.dataEvento | DateTimeFormat}}</td>
             <td class="d-none d-md-table-cell">{{evento.qtdPessoas}}</td>
-            <td class="d-none d-md-table-cell">{{evento.lotes[0]?.nome | uppercase}}</td>
+            <td class="d-none d-md-table-cell">{{evento.lotes[0].nome | uppercase}}</td>
             <td> <button type="button" class="btn btn-danger btn-lg"><i class="fa fa-trash" tooltip="Excluir" (click)="openModal(template)"></i></button></td>
         </tr>
     </tbody>
