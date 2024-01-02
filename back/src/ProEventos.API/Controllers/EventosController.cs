@@ -1,11 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using ProEventos.Domain;
-using System.Linq;
-using System.Collections.Generic;
 using ProEventos.Application.Contratos;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Threading.Tasks;
+using ProEventos.Application.Dtos;
 
 namespace ProEventos.API.Controllers;
 
@@ -23,7 +18,7 @@ public class EventosController : ControllerBase
     public async Task<IActionResult> Get(){
         try {
             var eventos = await _eventoService.GetAllEventosAsync(true);
-            return (eventos == null) ? NotFound("Nenhum evento encontrado.") : Ok(eventos);
+            return (eventos == null) ? NoContent() : Ok(eventos);
         }
         catch (Exception ex) {
             return this.StatusCode(StatusCodes.Status500InternalServerError,
@@ -35,7 +30,7 @@ public class EventosController : ControllerBase
     public async Task<IActionResult> GetById(int id){
         try {
             var eventos = await _eventoService.GetEventoByIdAsync(id, true);
-            return (eventos == null) ? NotFound("Evento não encontrado.") : Ok(eventos);
+            return (eventos == null) ? NoContent() : Ok(eventos);
         }
         catch (Exception ex) {
             return this.StatusCode(StatusCodes.Status500InternalServerError,
@@ -47,7 +42,7 @@ public class EventosController : ControllerBase
     public async Task<IActionResult> GetByTema(string tema){
         try {
             var eventos = await _eventoService.GetAllEventosByTemaAsync(tema, true);
-            return (eventos == null) ? NotFound("Evento não encontrado.") : Ok(eventos);
+            return (eventos == null) ? NoContent() : Ok(eventos);
         }
         catch (Exception ex) {
             return this.StatusCode(StatusCodes.Status500InternalServerError,
@@ -56,10 +51,10 @@ public class EventosController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Evento model){
+    public async Task<IActionResult> Post(EventoDto model){
         try {
             var eventos = await _eventoService.AddEventos(model);
-            return (eventos == null) ? BadRequest("Erro ao tentar adicionar evento.") : Ok(eventos);
+            return (eventos == null) ? NoContent() : Ok(eventos);
         }
         catch (Exception ex) {
             return this.StatusCode(StatusCodes.Status500InternalServerError,
@@ -68,10 +63,10 @@ public class EventosController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, Evento model){
+    public async Task<IActionResult> Put(int id, EventoDto model){
         try {
             var eventos = await _eventoService.UpdateEventos(id, model);
-            return (eventos == null) ? BadRequest("Erro ao tentar atualizar evento.") : Ok(eventos);
+            return (eventos == null) ? NoContent() : Ok(eventos);
         }
         catch (Exception ex) {
             return this.StatusCode(StatusCodes.Status500InternalServerError,

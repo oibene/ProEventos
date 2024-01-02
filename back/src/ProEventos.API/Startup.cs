@@ -23,6 +23,7 @@ namespace ProEventos.API
         {
             services.AddDbContext<ProEventosContext>(c => c.UseSqlite(Configuration.GetConnectionString("Default"))); //configura database ;)
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); //ignora loop
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IEventosService, EventosService>();
             services.AddScoped<IGeralPersist, GeralPersist>();
